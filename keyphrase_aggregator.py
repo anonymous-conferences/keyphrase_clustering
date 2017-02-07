@@ -10,10 +10,10 @@ import operator
 #keywords_input_dir=sys.argv[1]
 
 
-threshold_multi=0.7
-threshold_single=0.7
-threshold_multi_split=0.85
-threshold_single_split=0.85
+threshold_multi=0.8
+threshold_single=0.8
+threshold_multi_split=0.8
+threshold_single_split=0.8
 maxlen=10000
 
 vec_file='glove.6B.50d.txt'
