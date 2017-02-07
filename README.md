@@ -5,7 +5,7 @@ This script takes as input a folder containing one or more lists of keyphrases a
 
 An example of the input file is available in `sample_input/sample.txt`. Each line should contain a keyphrase and an associated weight (teb separated). Keyphrases made of two or more words need to be joint by an underscore.
 
-To run the code use:
+To use the code, unzip the file `glove.6B.50d.txt.zip` in the main folder and run:
 ```
 python keyphrase_aggregator.py -d sample_input/
 ```
