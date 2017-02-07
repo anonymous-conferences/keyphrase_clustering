@@ -19,7 +19,7 @@ maxlen=10000
 vec_file='glove.6B.50d.txt'
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "v:d:t:s:l:",["","","","",""])
+    opts, args = getopt.getopt(sys.argv[1:], "v:d:t:s:m:",["","","","",""])
 except getopt.GetoptError:
     sys.exit(2)
 for opt, arg in opts:
@@ -27,7 +27,7 @@ for opt, arg in opts:
         vec_file = arg
     if opt == '-d':
         keywords_input_dir= arg
-    if opt == '-l':
+    if opt == '-m':
         maxlen= int(arg)
     if opt == '-t':
         threshold_multi = float(arg)
