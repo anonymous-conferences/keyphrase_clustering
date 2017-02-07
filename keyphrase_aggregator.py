@@ -5,11 +5,6 @@ from kpaggregator import functions
 import getopt
 import operator
 
-#keywords_input_file=sys.argv[1]
-#vec_file=sys.argv[1]
-#keywords_input_dir=sys.argv[1]
-
-
 threshold_multi=0.8
 threshold_single=0.8
 threshold_multi_split=0.8
@@ -32,6 +27,8 @@ for opt, arg in opts:
     if opt == '-t':
         threshold_multi = float(arg)
         threshold_single = threshold_multi
+        threshold_multi_split = float(arg)
+        threshold_single_split = threshold_multi_split
     if opt == '-s':
         threshold_multi_split = float(arg)
         threshold_single_split = threshold_multi_split
@@ -72,7 +69,7 @@ for filename in os.listdir(keywords_input_dir):
         sys.stdout.write("Cleaning clusters")
         groups_list=functions.clean_by_standard_deviation(groups_list, mean_kw_vectors, 1.5, 3)
         sys.stdout.write("...Done\n")
-        sys.stdout.write("Splitting big clusters")
+        sys.stdout.write("Splitting large clusters")
         groups_output_list=list()
         for group in groups_list:
             if len(group) <maxlen:
@@ -80,7 +77,6 @@ for filename in os.listdir(keywords_input_dir):
             else:
                 tmp_group_list=list()
                 (tmp_k_dict, tmp_t_dict)=functions.list_to_keywords_dict(group)
-                #cosines_dict = functions.compute_keywords_cosine(tmp_k_dict, mean_kw_vectors, 0.90, 0.85)
                 cosines_dict = functions.compute_keywords_cosine_all(tmp_k_dict, mean_kw_vectors, threshold_multi_split, threshold_single_split)
                 sorted_pairs_cosines_dict = functions.sort_keyword_pairs(cosines_dict, tfidf_dict)
                 tmp_group_list = functions.merge_on_first_keyword(sorted_pairs_cosines_dict)
@@ -92,7 +88,7 @@ for filename in os.listdir(keywords_input_dir):
         sys.stdout.write("...Done\n")
 
         sys.stdout.write("Printing clusters")
-        outname = filename+"_groups.txt"
+        outname = filename+"_clusters.txt"
         groups_out = open(outname, 'w')
         for g in groups_output_list:
             for i in g:
