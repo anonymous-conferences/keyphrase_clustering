@@ -99,4 +99,4 @@ for filename in os.listdir(keywords_input_dir):
 
 
         sys.stdout.write(str(len(groups_output_list)))
-        sys.stdout.write(" groups found\n\n")
+        sys.stdout.write(" clusters found\n\n")
